@@ -1,13 +1,10 @@
-import { rndBetween } from '@laufire/utils/lib';
-
-const size = {
-	min: 5,
-	max: 11,
-};
-
 const config = {
-	size: rndBetween(size.min, size.max),
+	size: {
+		min: 5,
+		max: 11,
+	},
 	backgroundSize: 100,
+	timeDelay: 1000,
 };
 
 export default config;

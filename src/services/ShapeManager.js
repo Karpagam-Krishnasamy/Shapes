@@ -8,13 +8,17 @@ const getSpace = (size, backgroundSize) =>
 const ShapeManager = {
 	addSquare: ({
 		state: { shapes },
-		config: { size, backgroundSize },
-	}) => [...shapes,
-		{
-			size: size,
-			x: getSpace(size, backgroundSize),
-			y: getSpace(size, backgroundSize),
-		}],
+		config: { size: { min, max }, backgroundSize },
+	}) => {
+		const size = rndBetween(min, max);
+
+		return [...shapes,
+			{
+				size: size,
+				x: getSpace(size, backgroundSize),
+				y: getSpace(size, backgroundSize),
+			}];
+	},
 };
 
 export default ShapeManager;
