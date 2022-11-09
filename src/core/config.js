@@ -5,6 +5,7 @@ const config = {
 	},
 	backgroundSize: 100,
 	timeDelay: 1000,
+	maxShapeCount: 10,
 };
 
 export default config;
