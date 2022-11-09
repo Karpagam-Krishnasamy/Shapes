@@ -1,12 +1,9 @@
 import { React } from 'react';
 import './App.scss';
-import SimpleButton from './components/simpleButton';
+import Background from './components/Background';
 
-const App = ({ state: { count, refreshID }}) =>
-	<div className="App" role="application">
-		<div>Count: { count }</div>
-		<div>{ SimpleButton() }</div>
-		<div>Refresh ID: { refreshID }</div>
-	</div>;
+const App = (context) => <div className="App" role="App">
+	<Background/>
+</div>;
 
 export default App;
