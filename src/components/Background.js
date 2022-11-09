@@ -1,5 +1,8 @@
 import React from 'react';
+import Square from './Square';
 
-const Background = () => <div className="background-position"/>;
+const Background = (context) => <div className="background-position">
+	<Square { ...context }/>
+</div>;
 
 export default Background;
