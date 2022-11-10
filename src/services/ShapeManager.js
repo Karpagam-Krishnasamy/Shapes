@@ -13,12 +13,13 @@ const ShapeManager = {
 		const size = rndBetween(min, max);
 
 		return [...shapes,
-			(maxShapeCount > shapes.length)
-			&& {
-				size: size,
-				x: getSpace(size, backgroundSize),
-				y: getSpace(size, backgroundSize),
-			}];
+			...maxShapeCount > shapes.length
+				? [{
+					size: size,
+					x: getSpace(size, backgroundSize),
+					y: getSpace(size, backgroundSize),
+				}]
+				: []];
 	},
 };
 
