@@ -1,7 +1,5 @@
 import React from 'react';
 
-const half = 0.1;
-
 const Triangle = ({ size, x, y }) =>
 	<div
 		style={ {
@@ -9,12 +7,11 @@ const Triangle = ({ size, x, y }) =>
 			width: `${ 0 }vmin`,
 			height: `${ 0 }vmin`,
 			left: `${ x }vmin`,
-			top: `${ y + (size * half) }vmin`,
+			top: `${ y }vmin`,
 			borderLeft: `${ size }vmin solid transparent`,
 			borderRight: `${ size }vmin solid transparent`,
 			borderBottom: `${ size }vmin solid black`,
 			transform: 'translate(-50%, -50%) ',
-
 		} }
 	/>;
 

@@ -1,7 +1,7 @@
 import ShapeManager from '../services/ShapeManager';
 
 const addShape = (context) => ({
-	shapes: ShapeManager.addShape(context),
+	shapes: ShapeManager.getShape(context),
 });
 
 const actions = {
