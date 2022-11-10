@@ -7,7 +7,7 @@ const getSpace = (size, backgroundSize) =>
 	rndBetween(size * half, backgroundSize - (size * half));
 
 const ShapeManager = {
-	addSquare: ({
+	addShape: ({
 		state: { shapes },
 		config: { size: { min, max }, backgroundSize, maxShapeCount },
 	}) => {

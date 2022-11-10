@@ -1,6 +1,6 @@
 const Ticker = {
 	start: ({ config: { timeDelay }, actions }) => setInterval(() =>
-		actions.addSquare(), timeDelay),
+		actions.addShape(), timeDelay),
 };
 
 export default Ticker;

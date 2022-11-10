@@ -1,11 +1,11 @@
 import ShapeManager from '../services/ShapeManager';
 
-const addSquare = (context) => ({
-	shapes: ShapeManager.addSquare(context),
+const addShape = (context) => ({
+	shapes: ShapeManager.addShape(context),
 });
 
 const actions = {
-	addSquare,
+	addShape,
 };
 
 export default actions;
