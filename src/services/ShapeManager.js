@@ -12,7 +12,7 @@ const ShapeManager = {
 		config: { size: { min, max }, backgroundSize, maxShapeCount },
 	}) => {
 		const size = rndBetween(min, max);
-		const shape = rndValue(['square']);
+		const shape = rndValue(['square', 'circle']);
 
 		return [...shapes,
 			...maxShapeCount > shapes.length
