@@ -1,4 +1,5 @@
 import { rndBetween } from '@laufire/utils/lib';
+import { rndValue } from '@laufire/utils/random';
 
 const half = 0.5;
 
@@ -11,10 +12,12 @@ const ShapeManager = {
 		config: { size: { min, max }, backgroundSize, maxShapeCount },
 	}) => {
 		const size = rndBetween(min, max);
+		const shape = rndValue(['square']);
 
 		return [...shapes,
 			...maxShapeCount > shapes.length
 				? [{
+					shape: shape,
 					size: size,
 					x: getSpace(size, backgroundSize),
 					y: getSpace(size, backgroundSize),

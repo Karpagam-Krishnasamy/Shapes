@@ -1,8 +1,8 @@
 import React from 'react';
-import Square from './Square';
+import Shape from './Shape';
 
 const Shapes = ({ state: { shapes }}) =>
-	shapes.map(({ size, x, y }, index) =>
-		<Square key={ index } { ...{ size, x, y } }/>);
+	shapes.map(({ shape, size, x, y }, index) =>
+		<Shape key={ index } { ...{ shape, size, x, y } }/>);
 
 export default Shapes;
