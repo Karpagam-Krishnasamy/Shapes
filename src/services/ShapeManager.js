@@ -2,6 +2,7 @@ import { rndBetween } from '@laufire/utils/lib';
 import { rndValue } from '@laufire/utils/random';
 
 const half = 0.5;
+const directions = ['left', 'right', 'top', 'bottom'];
 
 const getSpace = (size, backgroundSize) =>
 	rndBetween(size * half, backgroundSize - (size * half));
@@ -21,6 +22,7 @@ const ShapeManager = {
 					size: size,
 					x: getSpace(size, backgroundSize),
 					y: getSpace(size, backgroundSize),
+					direction: rndValue(directions),
 				}]
 				: []];
 	},
@@ -38,6 +40,7 @@ const ShapeManager = {
 					size: size,
 					x: getSpace(size, backgroundSize),
 					y: getSpace(size, backgroundSize),
+					direction: rndValue(directions),
 				}]
 				: []];
 	},
@@ -55,6 +58,7 @@ const ShapeManager = {
 					size: size,
 					x: rndBetween(size, backgroundSize - size),
 					y: getSpace(size, backgroundSize),
+					direction: rndValue(directions),
 				}]
 				: []];
 	},
