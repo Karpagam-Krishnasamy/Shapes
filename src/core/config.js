@@ -6,6 +6,7 @@ const config = {
 	backgroundSize: 100,
 	timeDelay: 1000,
 	maxShapeCount: 10,
+	distance: 5,
 };
 
 export default config;
