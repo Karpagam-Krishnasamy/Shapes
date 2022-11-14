@@ -9,16 +9,17 @@ const getSpace = (size, backgroundSize) =>
 
 const ShapeManager = {
 
-	addSquare: ({
+	addShape: ({
 		state: { shapes },
 		config: { size: { min, max }, backgroundSize, maxShapeCount },
 	}) => {
 		const size = rndBetween(min, max);
+		const shape = rndValue(['square', 'circle', 'triangle']);
 
 		return [...shapes,
 			...maxShapeCount > shapes.length
 				? [{
-					shape: 'square',
+					shape: shape,
 					size: size,
 					x: getSpace(size, backgroundSize),
 					y: getSpace(size, backgroundSize),
@@ -26,48 +27,6 @@ const ShapeManager = {
 				}]
 				: []];
 	},
-
-	addCircle: ({
-		state: { shapes },
-		config: { size: { min, max }, backgroundSize, maxShapeCount },
-	}) => {
-		const size = rndBetween(min, max);
-
-		return [...shapes,
-			...maxShapeCount > shapes.length
-				? [{
-					shape: 'circle',
-					size: size,
-					x: getSpace(size, backgroundSize),
-					y: getSpace(size, backgroundSize),
-					direction: rndValue(directions),
-				}]
-				: []];
-	},
-
-	addTriangle: ({
-		state: { shapes },
-		config: { size: { min, max }, backgroundSize, maxShapeCount },
-	}) => {
-		const size = rndBetween(min, max);
-
-		return [...shapes,
-			...maxShapeCount > shapes.length
-				? [{
-					shape: 'triangle',
-					size: size,
-					x: rndBetween(size, backgroundSize - size),
-					y: getSpace(size, backgroundSize),
-					direction: rndValue(directions),
-				}]
-				: []];
-	},
-
-	getShape: (context) => rndValue([
-		ShapeManager.addSquare(context),
-		ShapeManager.addCircle(context),
-		ShapeManager.addTriangle(context),
-	]),
 
 };
 

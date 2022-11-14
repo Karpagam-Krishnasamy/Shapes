@@ -2,7 +2,7 @@ import MovementManager from '../services/MovementManager';
 import ShapeManager from '../services/ShapeManager';
 
 const addShape = (context) => ({
-	shapes: ShapeManager.getShape(context),
+	shapes: ShapeManager.addShape(context),
 });
 
 const manageMovement = (context) => ({
