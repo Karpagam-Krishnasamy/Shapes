@@ -1,8 +1,11 @@
 import React from 'react';
 import Shape from './Shape';
 
-const Shapes = ({ state: { shapes }}) =>
-	shapes.map((shape, index) =>
-		<Shape key={ index } { ...shape }/>);
+const Shapes = (context) => {
+	const { state: { shapes }} = context;
+
+	return shapes.map((shape, index) =>
+		<Shape key={ index } { ...{ ...context, shape } }/>);
+};
 
 export default Shapes;

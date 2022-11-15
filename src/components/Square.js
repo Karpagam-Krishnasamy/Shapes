@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Square = ({ size, x, y }) =>
+const Square = ({ shape: { size, x, y, life }, config: { backgroundColor }}) =>
 	<div
 		style={ {
 			width: `${ size }vmin`,
 			height: `${ size }vmin`,
 			left: `${ x }vmin`,
 			top: `${ y }vmin`,
-			backgroundColor: 'black',
+			backgroundColor: `${ backgroundColor[life] }`,
 		} }
 		className="centre"
 	/>;

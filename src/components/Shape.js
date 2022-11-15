@@ -9,10 +9,11 @@ const ShapeSelector = {
 	triangle: Triangle,
 };
 
-const Shape = ({ shape, size, x, y }) => {
+const Shape = (context) => {
+	const { shape: { shape }} = context;
 	const ShapeComponent = ShapeSelector[shape];
 
-	return <ShapeComponent { ...{ size, x, y } }/>;
+	return <ShapeComponent { ...context }/>;
 };
 
 export default Shape;

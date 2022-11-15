@@ -2,7 +2,10 @@ import React from 'react';
 
 const half = 0.5;
 
-const Triangle = ({ size, x, y }) =>
+const Triangle = ({
+	shape: { size, x, y, life },
+	config: { backgroundColor },
+}) =>
 	<div
 		style={ {
 			width: `${ 0 }vmin`,
@@ -11,7 +14,7 @@ const Triangle = ({ size, x, y }) =>
 			top: `${ y }vmin`,
 			borderLeft: `${ size * half }vmin solid transparent`,
 			borderRight: `${ size * half }vmin solid transparent`,
-			borderBottom: `${ size }vmin solid black`,
+			borderBottom: `${ size }vmin solid ${ backgroundColor[life] }`,
 		} }
 		className="centre"
 	/>;
