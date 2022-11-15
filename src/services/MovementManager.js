@@ -1,15 +1,16 @@
+/* eslint-disable max-len */
 import { find } from '@laufire/utils/collection';
 
 const half = 0.5;
 
 const DirectionProps = {
-	left: { x: -1, y: 0, direction: 'right' },
-	right: { x: 1, y: 0, direction: 'left' },
-	top: { x: 0, y: -1, direction: 'bottom' },
-	bottom: { x: 0, y: 1, direction: 'top' },
+	left: { x: -1, y: 0, direction: 'right', border: 0 },
+	right: { x: 1, y: 0, direction: 'left', border: 100 },
+	top: { x: 0, y: -1, direction: 'bottom', border: 0 },
+	bottom: { x: 0, y: 1, direction: 'top', border: 100 },
 };
 
-const checkBorder = (
+const getCollidePosition = (
 	shape, distance, backgroundSize
 ) => {
 	const newPosition = moveNext(shape, distance);
@@ -20,12 +21,15 @@ const checkBorder = (
 	return find(newPosition, (value) => value < 0 || value > backgroundSize);
 };
 
-const bounceBack = (shape, distance) => ({
+const bounceBack = (
+	shape, collidedPosition, backgroundSize
+) => ({
 	...moveNext({
 		...shape,
 		direction: DirectionProps[shape.direction].direction,
+		...resetBorder(shape),
 	}
-	, distance),
+	, Math.abs(collidedPosition % backgroundSize)),
 });
 
 const moveNext = (shape, distance) => ({
@@ -34,17 +38,31 @@ const moveNext = (shape, distance) => ({
 	y: shape.y + (DirectionProps[shape.direction].y * distance),
 });
 
+const resetBorder = ({ x, y, direction, size }) => ({
+	x: DirectionProps[direction].x
+		? DirectionProps[direction].border - (DirectionProps[direction].x * (size * half))
+		: x,
+	y: DirectionProps[direction].y
+		? DirectionProps[direction].border - (DirectionProps[direction].y * (size * half))
+		: y,
+});
+
 const MovementManager = {
 	move: ({ state: { shapes = [] }, config: { distance, backgroundSize }}) =>
-		shapes.map((shape) =>
-			({
+		shapes.map((shape) => {
+			const collidedPosition = getCollidePosition(
+				shape, distance, backgroundSize
+			);
+
+			return {
 				...shape,
-				...checkBorder(
-					shape, distance, backgroundSize
-				)
-					? bounceBack(shape, distance)
+				...collidedPosition
+					? bounceBack(
+						shape, distance, collidedPosition, backgroundSize
+					)
 					: moveNext(shape, distance),
-			})),
+			};
+		}),
 };
 
 export default MovementManager;
