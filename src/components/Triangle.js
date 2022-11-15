@@ -5,7 +5,6 @@ const half = 0.5;
 const Triangle = ({ size, x, y }) =>
 	<div
 		style={ {
-			position: 'absolute',
 			width: `${ 0 }vmin`,
 			height: `${ 0 }vmin`,
 			left: `${ x }vmin`,
@@ -13,8 +12,8 @@ const Triangle = ({ size, x, y }) =>
 			borderLeft: `${ size * half }vmin solid transparent`,
 			borderRight: `${ size * half }vmin solid transparent`,
 			borderBottom: `${ size }vmin solid black`,
-			transform: 'translate(-50%, -50%) ',
 		} }
+		className="centre"
 	/>;
 
 export default Triangle;

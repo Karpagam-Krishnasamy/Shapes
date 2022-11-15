@@ -6,10 +6,16 @@
 	}
 }
 
-.background-position{
+.background-position {
 	width: 100vmin;
 	height: 100vmin;
 	background-color: aqua;
 	overflow: hidden;
-	position: relative;
+	top: 50%;
+	left: 50%;
+}
+
+.centre {
+	transform: translate(-50%, -50%);
+	position: absolute;
 }
