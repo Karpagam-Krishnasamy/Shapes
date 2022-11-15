@@ -11,7 +11,7 @@ const ShapeManager = {
 
 	addShape: ({
 		state: { shapes },
-		config: { size: { min, max }, backgroundSize, maxShapeCount },
+		config: { size: { min, max }, backgroundSize, maxShapeCount, life },
 	}) => {
 		const size = rndBetween(min, max);
 		const shape = rndValue(['square', 'circle', 'triangle']);
@@ -24,6 +24,7 @@ const ShapeManager = {
 					x: getSpace(size, backgroundSize),
 					y: getSpace(size, backgroundSize),
 					direction: rndValue(directions),
+					life: life,
 				}]
 				: []];
 	},

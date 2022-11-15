@@ -27,6 +27,7 @@ const bounceBack = (
 	...moveNext({
 		...shape,
 		direction: DirectionProps[shape.direction].direction,
+		life: shape.life--,
 		...resetBorder(shape),
 	}
 	, Math.abs(collidedPosition % backgroundSize)),
@@ -62,7 +63,8 @@ const MovementManager = {
 					)
 					: moveNext(shape, distance),
 			};
-		}),
+		}).filter((shape) =>
+			shape.life),
 };
 
 export default MovementManager;

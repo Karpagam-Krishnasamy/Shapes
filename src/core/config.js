@@ -7,6 +7,7 @@ const config = {
 	timeDelay: 1000,
 	maxShapeCount: 10,
 	distance: 5,
+	life: 5,
 };
 
 export default config;
