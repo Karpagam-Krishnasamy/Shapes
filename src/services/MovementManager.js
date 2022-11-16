@@ -21,16 +21,16 @@ const getCollidePosition = (
 };
 
 const getBounceDistance = (
-	shape, collidedPosition, backgroundSize
+	shape, collidedPosition, backgroundSize, distance
 ) =>
-	DirectionProps[shape.direction].border
-	- ((DirectionProps[shape.direction].x
-		|| DirectionProps[shape.direction].y) * shape.size * half)
-	- (shape[DirectionProps[shape.direction].axis]
-		+ (collidedPosition % backgroundSize));
+	shape[DirectionProps[shape.direction].axis]
+	- ((DirectionProps[shape.direction].x || DirectionProps[shape.direction].y)
+	* (DirectionProps[shape.direction].border
+		- (collidedPosition % backgroundSize)
+		- (shape.size * half)));
 
 const bounceBack = (
-	shape, collidedPosition, backgroundSize
+	shape, collidedPosition, backgroundSize, distance
 ) => ({
 	...moveNext({
 		...shape,
@@ -38,7 +38,7 @@ const bounceBack = (
 		life: shape.life--,
 	}
 	, getBounceDistance(
-		shape, collidedPosition, backgroundSize
+		shape, collidedPosition, backgroundSize, distance
 	)),
 });
 
@@ -59,7 +59,7 @@ const MovementManager = {
 				...shape,
 				...collidedPosition
 					? bounceBack(
-						shape, collidedPosition, backgroundSize
+						shape, collidedPosition, backgroundSize, distance
 					)
 					: moveNext(shape, distance),
 			};
