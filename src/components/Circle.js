@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Circle = ({ shape: { size, x, y, life }, config: { backgroundColor }}) =>
+const Circle = ({ data: { size, x, y, life }, config: { backgroundColor }}) =>
 	<div
 		style={ {
 			width: `${ size }vmin`,

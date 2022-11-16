@@ -3,7 +3,7 @@ import React from 'react';
 const half = 0.5;
 
 const Triangle = ({
-	shape: { size, x, y, life },
+	data: { size, x, y, life },
 	config: { backgroundColor },
 }) =>
 	<div

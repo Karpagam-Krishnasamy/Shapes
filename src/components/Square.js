@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Square = ({ shape: { size, x, y, life }, config: { backgroundColor }}) =>
+const Square = ({ data: { size, x, y, life }, config: { backgroundColor }}) =>
 	<div
 		style={ {
 			width: `${ size }vmin`,

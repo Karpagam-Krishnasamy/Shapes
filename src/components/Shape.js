@@ -10,8 +10,8 @@ const ShapeSelector = {
 };
 
 const Shape = (context) => {
-	const { shape: { shape }} = context;
-	const ShapeComponent = ShapeSelector[shape];
+	const { data: { type }} = context;
+	const ShapeComponent = ShapeSelector[type];
 
 	return <ShapeComponent { ...context }/>;
 };
