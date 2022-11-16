@@ -1,13 +1,12 @@
-/* eslint-disable max-len */
 import { find } from '@laufire/utils/collection';
 
 const half = 0.5;
 
 const DirectionProps = {
-	left: { x: -1, y: 0, direction: 'right', border: 0 },
-	right: { x: 1, y: 0, direction: 'left', border: 100 },
-	top: { x: 0, y: -1, direction: 'bottom', border: 0 },
-	bottom: { x: 0, y: 1, direction: 'top', border: 100 },
+	left: { x: -1, y: 0, direction: 'right', border: 0, axis: 'x' },
+	right: { x: 1, y: 0, direction: 'left', border: 100, axis: 'x' },
+	top: { x: 0, y: -1, direction: 'bottom', border: 0, axis: 'y' },
+	bottom: { x: 0, y: 1, direction: 'top', border: 100, axis: 'y' },
 };
 
 const getCollidePosition = (
@@ -21,6 +20,15 @@ const getCollidePosition = (
 	return find(newPosition, (value) => value < 0 || value > backgroundSize);
 };
 
+const getBounceDistance = (
+	shape, collidedPosition, backgroundSize
+) =>
+	DirectionProps[shape.direction].border
+	- ((DirectionProps[shape.direction].x
+		|| DirectionProps[shape.direction].y) * shape.size * half)
+	- (shape[DirectionProps[shape.direction].axis]
+		+ (collidedPosition % backgroundSize));
+
 const bounceBack = (
 	shape, collidedPosition, backgroundSize
 ) => ({
@@ -28,24 +36,16 @@ const bounceBack = (
 		...shape,
 		direction: DirectionProps[shape.direction].direction,
 		life: shape.life--,
-		...resetBorder(shape),
 	}
-	, Math.abs(collidedPosition % backgroundSize)),
+	, getBounceDistance(
+		shape, collidedPosition, backgroundSize
+	)),
 });
 
 const moveNext = (shape, distance) => ({
 	...shape,
 	x: shape.x + (DirectionProps[shape.direction].x * distance),
 	y: shape.y + (DirectionProps[shape.direction].y * distance),
-});
-
-const resetBorder = ({ x, y, direction, size }) => ({
-	x: DirectionProps[direction].x
-		? DirectionProps[direction].border - (DirectionProps[direction].x * (size * half))
-		: x,
-	y: DirectionProps[direction].y
-		? DirectionProps[direction].border - (DirectionProps[direction].y * (size * half))
-		: y,
 });
 
 const MovementManager = {
@@ -59,7 +59,7 @@ const MovementManager = {
 				...shape,
 				...collidedPosition
 					? bounceBack(
-						shape, distance, collidedPosition, backgroundSize
+						shape, collidedPosition, backgroundSize
 					)
 					: moveNext(shape, distance),
 			};
