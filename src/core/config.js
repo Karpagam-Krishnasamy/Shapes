@@ -8,7 +8,7 @@ const config = {
 	maxShapeCount: 10,
 	distance: 5,
 	life: 5,
-	backgroundColor: {
+	backgroundColors: {
 		1: 'red',
 		2: 'orange',
 		3: 'yellow',

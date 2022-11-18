@@ -1,15 +1,17 @@
 import React from 'react';
 
-const Square = ({ data: { size, x, y, life }, config: { backgroundColor }}) =>
-	<div
-		style={ {
+const Square = ({ data: { size, x, y, life }, config: { backgroundColors }}) =>
+	<div { ...{
+		className: 'centre',
+		style: {
 			width: `${ size }vmin`,
 			height: `${ size }vmin`,
 			left: `${ x }vmin`,
 			top: `${ y }vmin`,
-			backgroundColor: `${ backgroundColor[life] }`,
-		} }
-		className="centre"
+			backgroundColor: `${ backgroundColors[life] }`,
+		},
+	}
+	}
 	/>;
 
 export default Square;
