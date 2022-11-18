@@ -6,7 +6,7 @@ const config = {
 	backgroundSize: 100,
 	timeDelay: 1000,
 	maxShapeCount: 10,
-	distance: 5,
+	speed: 5,
 	life: 5,
 	backgroundColors: {
 		1: 'red',

@@ -5,7 +5,7 @@ const addShape = (context) => ({
 	shapes: ShapeManager.addShape(context),
 });
 
-const manageMovement = (context) => ({
+const moveShapes = (context) => ({
 	shapes: MovementManager.move(context),
 });
 
@@ -15,7 +15,7 @@ const removeShapes = (context) => ({
 
 const actions = {
 	addShape,
-	manageMovement,
+	moveShapes,
 	removeShapes,
 };
 

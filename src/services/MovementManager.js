@@ -9,8 +9,8 @@ const Directions = {
 	bottom: { x: 0, y: 1, opposite: 'top', border: 100, axis: 'y' },
 };
 
-const getCollidingPosition = (shape, { distance, backgroundSize }) => {
-	const newPosition = moveNext(shape, distance);
+const getCollidingPosition = (shape, { speed, backgroundSize }) => {
+	const newPosition = moveNext({ shape, speed });
 	const { size, direction } = shape;
 	const { x, y } = Directions[direction];
 
@@ -21,7 +21,7 @@ const getCollidingPosition = (shape, { distance, backgroundSize }) => {
 		value < 0 || value > backgroundSize);
 };
 
-const getBounceDistance = (
+const getBounceSpeed = (
 	shape, collidingPosition
 	, { backgroundSize }
 ) => {
@@ -37,26 +37,28 @@ const bounceBack = (
 	shape, collidingPosition, config
 ) => {
 	const { opposite } = Directions[shape.direction];
-
-	return {
-		...moveNext({
-			...shape,
-			direction: opposite,
-			life: shape.life--,
-		},
-		getBounceDistance(
-			shape, collidingPosition, config
-		)),
+	const updatedShape = {
+		...shape,
+		direction: opposite,
+		life: shape.life--,
 	};
+	const bounceSpeed = getBounceSpeed(
+		shape, collidingPosition, config
+	);
+
+	return moveNext({
+		shape: updatedShape,
+		speed: bounceSpeed,
+	});
 };
 
-const moveNext = (shape, distance) => {
+const moveNext = ({ shape, speed }) => {
 	const { x, y } = Directions[shape.direction];
 
 	return {
 		...shape,
-		x: shape.x + (x * distance),
-		y: shape.y + (y * distance),
+		x: shape.x + (x * speed),
+		y: shape.y + (y * speed),
 	};
 };
 
@@ -64,7 +66,7 @@ const MovementManager = {
 	move: ({ state: { shapes = [] }, config }) =>
 		shapes.map((shape) => {
 			const collidingPosition = getCollidingPosition(shape, config);
-			const { distance } = config;
+			const { speed } = config;
 
 			return {
 				...shape,
@@ -72,7 +74,7 @@ const MovementManager = {
 					? bounceBack(
 						shape, collidingPosition, config
 					)
-					: moveNext(shape, distance),
+					: moveNext({ shape, speed }),
 			};
 		}),
 
