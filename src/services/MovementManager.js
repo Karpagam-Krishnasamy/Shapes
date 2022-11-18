@@ -74,7 +74,10 @@ const MovementManager = {
 					)
 					: moveNext(shape, distance),
 			};
-		}).filter((shape) =>
+		}),
+
+	remove: ({ state: { shapes }}) =>
+		shapes.filter((shape) =>
 			shape.life),
 };
 

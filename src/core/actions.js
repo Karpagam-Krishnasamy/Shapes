@@ -9,9 +9,14 @@ const manageMovement = (context) => ({
 	shapes: MovementManager.move(context),
 });
 
+const removeShapes = (context) => ({
+	shapes: MovementManager.remove(context),
+});
+
 const actions = {
 	addShape,
 	manageMovement,
+	removeShapes,
 };
 
 export default actions;
