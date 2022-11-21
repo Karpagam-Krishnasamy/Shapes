@@ -17,11 +17,16 @@ const removeShapes = (context) => ({
 	shapes: MovementManager.remove(context),
 });
 
+const changeColor = (context) => ({
+	shapes: ShapeManager.changeColor(context),
+});
+
 const actions = {
 	addShape,
 	moveShapes,
 	reduceLife,
 	removeShapes,
+	changeColor,
 };
 
 export default actions;
