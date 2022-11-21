@@ -40,7 +40,6 @@ const bounceBack = (
 	const updatedShape = {
 		...shape,
 		direction: opposite,
-		life: shape.life--,
 	};
 	const bounceSpeed = getBounceSpeed(
 		shape, collidingPosition, config
@@ -78,9 +77,14 @@ const MovementManager = {
 			};
 		}),
 
+	reduceLife: ({ state: { shapes }, config }) => shapes.map((shape) => ({
+		...shape,
+		...getCollidingPosition(shape, config)
+		&& { life: shape.life-- },
+	})),
+
 	remove: ({ state: { shapes }}) =>
-		shapes.filter((shape) =>
-			shape.life),
+		shapes.filter((shape) => shape.life),
 };
 
 export default MovementManager;
