@@ -1,7 +1,7 @@
 import { React, useEffect } from 'react';
 import './App.scss';
 import Background from './components/Background';
-import Ticker from './services/Ticker';
+import Ticker from './services/ticker';
 
 const App = (context) => {
 	useEffect(() => Ticker.start(context), []);
